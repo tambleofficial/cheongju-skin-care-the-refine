@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="./favicon.ico" sizes="any">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<script src="./image-slot.js"></script>
+<script src="./reveal.js"></script>
+<style>
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;background:linear-gradient(rgba(255,255,255,.74),rgba(255,255,255,.74)),url('assets/marble.png');background-size:cover;background-attachment:fixed;font-family:'Pretendard','Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased;color:#14161c}
+  a{text-decoration:none;color:inherit}a:hover{color:#1e3fc2}
+  .disp{font-weight:600;letter-spacing:-.02em}
+  @keyframes silkDrift{0%{transform:translate(-3%,-2%) scale(1.06)}100%{transform:translate(3%,2%) scale(1.14)}}
+  @keyframes cueDrop{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(8px);opacity:1}}
+  [data-reveal]{opacity:0;transform:translateY(44px);transition:opacity 1.05s cubic-bezier(.16,.72,.2,1),transform 1.15s cubic-bezier(.16,.72,.2,1)}
+  [data-reveal].reveal-in{opacity:1;transform:none}
+  [data-clip]{clip-path:inset(0 0 101% 0);transition:clip-path 1.5s cubic-bezier(.16,.72,.2,1)}
+  [data-clip].reveal-in{clip-path:inset(0 0 0 0)}
+  .ba-range{-webkit-appearance:none;appearance:none;width:100%;background:transparent;outline:none;cursor:ew-resize}
+  .ba-range::-webkit-slider-thumb{-webkit-appearance:none;width:44px;height:100%;background:transparent;border:none;cursor:ew-resize}
+  .ba-range::-moz-range-thumb{width:44px;height:100%;background:transparent;border:none;cursor:ew-resize}
+</style>
+</helmet>
+
+<dc-import name="Header" over-hero="{{ true }}" current="archive" hint-size="100%,86px"></dc-import>
+
+<!-- HERO -->
+<section style="position:relative;height:clamp(520px,84vh,840px);overflow:hidden;background:#0a1748;display:flex;align-items:center">
+  <div style="position:absolute;inset:-8%;background:url('assets/silk-3.png') center/cover;animation:silkDrift 44s ease-in-out infinite alternate"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(92% 82% at 32% 46%,transparent 38%,rgba(5,13,46,.66) 100%)"></div>
+  <div style="position:absolute;top:clamp(98px,12vh,120px);left:clamp(18px,2vw,26px);right:clamp(18px,2vw,26px);bottom:clamp(18px,2vw,26px);border:1px solid rgba(255,255,255,.2);pointer-events:none"></div>
+  <div style="position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,44px);width:100%">
+    <span style="font-size:12px;font-weight:500;letter-spacing:.34em;color:rgba(255,255,255,.82)">RESULT · 전후 사례와 고객 후기</span>
+    <h1 class="disp" style="margin:26px 0 0;font-size:clamp(46px,8.4vw,132px);line-height:1;color:#fff">THE<br>RESULT.</h1>
+    <p style="margin:30px 0 0;font-size:clamp(15px,1.6vw,20px);line-height:1.7;color:rgba(255,255,255,.88);max-width:560px;font-weight:500">더리파인과 함께한 변화의 기록.</p>
+  </div>
+  <div style="position:absolute;left:50%;bottom:clamp(28px,4vw,50px);transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:9px"><span style="font-size:10px;letter-spacing:.28em;color:rgba(255,255,255,.7)">SCROLL</span><span style="width:1px;height:26px;background:rgba(255,255,255,.55);animation:cueDrop 1.8s ease-in-out infinite"></span></div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section style="padding:clamp(80px,11vw,160px) clamp(20px,5vw,44px)">
+  <div style="max-width:1240px;margin:0 auto">
+    <span data-reveal style="display:inline-block;font-size:12px;font-weight:600;letter-spacing:.22em;color:#1e3fc2">BEFORE / AFTER</span>
+    <h2 data-reveal class="disp" style="margin:24px 0 0;font-size:clamp(28px,4.2vw,52px);line-height:1.16">슬라이드로 확인하는 변화.</h2>
+    <p data-reveal style="margin:20px 0 clamp(40px,5vw,60px);font-size:14px;line-height:1.85;color:#8a8f99;max-width:640px">아래 사례는 실제 고객의 동의를 받아 등록되는 영역입니다. 이미지는 관리자 페이지에서 교체할 수 있으며, 결과는 개인의 컨디션에 따라 다를 수 있습니다.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(18px,2.4vw,30px)">
+      <sc-for list="{{ cases }}" as="c" hint-placeholder-count="2">
+        <div data-reveal>
+          <div ref="{{ c.boxRef }}" style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#0a1748;user-select:none">
+            <div style="position:absolute;inset:0"><img src="{{ c.afterImg }}" alt="AFTER" style="width:100%;height:100%;object-fit:cover"><span style="position:absolute;top:14px;right:14px;z-index:3;font-size:11px;font-weight:600;letter-spacing:.1em;color:#fff;background:rgba(30,63,194,.85);padding:5px 12px;border-radius:100px;pointer-events:none">AFTER</span></div>
+            <div ref="{{ c.clipRef }}" style="position:absolute;inset:0;clip-path:inset(0 50% 0 0);overflow:hidden"><img src="{{ c.beforeImg }}" alt="BEFORE" style="width:100%;height:100%;object-fit:cover"><span style="position:absolute;top:14px;left:14px;z-index:3;font-size:11px;font-weight:600;letter-spacing:.1em;color:#0a1748;background:rgba(255,255,255,.92);padding:5px 12px;border-radius:100px;pointer-events:none">BEFORE</span></div>
+            <div ref="{{ c.lineRef }}" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-1px);z-index:4;pointer-events:none;box-shadow:0 0 10px rgba(5,13,46,.4)"></div>
+            <input type="range" min="0" max="100" value="50" class="ba-range" oninput="{{ c.onInput }}" aria-label="전후 비교 슬라이더" style="position:absolute;left:0;right:0;top:0;bottom:0;height:100%;z-index:5">
+          </div>
+          <div style="margin-top:18px"><span style="font-size:11px;font-weight:600;letter-spacing:.1em;color:#1e3fc2">{{ c.tag }}</span><h3 class="disp" style="margin:8px 0 0;font-size:clamp(18px,2vw,22px)">{{ c.title }}</h3></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- RESULT GALLERY -->
+<section style="padding:0 clamp(20px,5vw,44px) clamp(80px,11vw,160px)">
+  <div style="max-width:1240px;margin:0 auto">
+    <span data-reveal style="display:inline-block;font-size:12px;font-weight:600;letter-spacing:.22em;color:#1e3fc2">GALLERY</span>
+    <h2 data-reveal class="disp" style="margin:24px 0 clamp(40px,5vw,60px);font-size:clamp(26px,3.8vw,48px);line-height:1.2">관리 장면의 기록.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:clamp(14px,1.6vw,22px)">
+      <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="8">
+        <div data-clip style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#e9edf6"><sc-if value="{{ g.video }}" hint-placeholder-val="{{ false }}"><video src="{{ g.video }}" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;transform:scale(2.05)"></video></sc-if><sc-if value="{{ g.isImg }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ g.id }}" shape="rect" placeholder="{{ g.label }}"></image-slot></sc-if><span style="position:absolute;top:12px;left:12px;z-index:2;font-size:10px;font-weight:600;letter-spacing:.1em;color:#fff;background:rgba(30,63,194,.82);padding:4px 9px;border-radius:100px;pointer-events:none">{{ g.cat }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section style="position:relative;overflow:hidden;background:#0a1748;color:#fff;padding:clamp(80px,11vw,160px) clamp(20px,5vw,44px)">
+  <div style="position:absolute;inset:-8%;background:url('assets/silk-4.png') center/cover;opacity:.55;animation:silkDrift 50s ease-in-out infinite alternate"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(90% 90% at 50% 50%,rgba(10,23,72,.4),rgba(5,13,46,.82) 100%)"></div>
+  <div style="position:relative;z-index:2;max-width:1240px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end;margin-bottom:clamp(30px,4vw,50px)">
+      <div><span data-reveal style="display:inline-block;font-size:12px;font-weight:600;letter-spacing:.16em;color:#9fb2f5">REVIEW</span><h2 data-reveal class="disp" style="margin:22px 0 0;font-size:clamp(28px,4vw,50px);color:#fff;line-height:1.16">방문하신 분들의 후기.</h2></div>
+      <a href="https://map.naver.com/p/entry/place/2037698163" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:600;letter-spacing:.1em;color:#9fb2f5;border-bottom:1px solid #9fb2f5;padding-bottom:6px">네이버 리뷰 →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(16px,2vw,24px)">
+      <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+        <div data-reveal style="border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);backdrop-filter:blur(6px);overflow:hidden;display:flex;flex-direction:column">
+          <div style="position:relative;aspect-ratio:9/16;background:rgba(255,255,255,.08)"><sc-if value="{{ r.video }}" hint-placeholder-val="{{ false }}"><video src="{{ r.video }}" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover"></video></sc-if><sc-if value="{{ r.isImg }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ r.id }}" shape="rect" placeholder="{{ r.ph }}"></image-slot></sc-if></div>
+          <div style="padding:clamp(22px,2.4vw,28px);display:flex;flex-direction:column;gap:12px;flex:1">
+            <div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;font-weight:600;letter-spacing:.1em;color:#9fb2f5">{{ r.cat }}</span><span style="font-size:11px;color:rgba(255,255,255,.5)">{{ r.meta }}</span></div>
+            <p style="margin:0;font-size:14.5px;line-height:1.85;color:rgba(255,255,255,.86)">{{ r.body }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <p data-reveal style="margin:clamp(30px,4vw,44px) 0 0;font-size:12.5px;line-height:1.8;color:rgba(255,255,255,.55);max-width:640px">후기는 실제 방문 고객의 동의를 받아 등록되는 영역입니다. 네이버 플레이스 후기와 연동하거나 관리자 페이지에서 직접 입력할 수 있습니다.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding:clamp(80px,12vw,160px) clamp(20px,5vw,44px);text-align:center">
+  <div style="max-width:820px;margin:0 auto">
+    <h2 data-reveal class="disp" style="margin:0;font-size:clamp(30px,5vw,64px);line-height:1.1">당신의 변화도,<br>여기서 시작됩니다.</h2>
+    <div data-reveal style="margin-top:clamp(36px,4vw,52px);display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+      <a href="https://map.naver.com/p/entry/place/2037698163" target="_blank" rel="noopener noreferrer" style="min-width:190px;padding:19px 34px;background:#1e3fc2;color:#fff;font-size:14px;font-weight:600;letter-spacing:.1em">RESERVATION</a>
+      <a href="contact.dc.html" style="min-width:190px;padding:19px 34px;background:transparent;color:#1e3fc2;border:1px solid #1e3fc2;font-size:14px;font-weight:600;letter-spacing:.1em">LOCATION</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,600px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  componentDidMount(){ if(window.RefineFX) this._s=window.RefineFX(); else this._t=setTimeout(()=>{if(window.RefineFX)this._s=window.RefineFX();},80);
+    this._kick=()=>{document.querySelectorAll('video').forEach(v=>{v.muted=true;v.defaultMuted=true;v.loop=true;v.setAttribute('muted','');v.setAttribute('loop','');const p=v.play();if(p&&p.catch)p.catch(()=>{});});};
+    this._kick(); this._ki=setInterval(this._kick,1200); setTimeout(()=>{clearInterval(this._ki);},6000);
+  }
+  componentWillUnmount(){ if(this._s)this._s(); if(this._t)clearTimeout(this._t); if(this._ki)clearInterval(this._ki); }
+  renderVals(){
+    const mkCase=(tag,title,beforeImg,afterImg)=>{
+      const refs={};
+      return {tag,title,beforeImg,afterImg,
+        clipRef:(el)=>refs.clip=el, lineRef:(el)=>refs.line=el, boxRef:(el)=>refs.box=el,
+        onInput:(e)=>{const v=e.target.value; if(refs.clip)refs.clip.style.clipPath='inset(0 '+(100-v)+'% 0 0)'; if(refs.line)refs.line.style.left=v+'%';}};
+    };
+    return {
+      cases:[
+        mkCase('CONTOUR CARE','윤곽 케어 사례','assets/ba-contour-before.png','assets/ba-contour-after.png'),
+        mkCase('SKIN CARE','피부 케어 사례','assets/ba-skin-before.png','assets/ba-skin-after.png'),
+      ],
+      gallery:[
+        {video:'assets/g-product.mp4',cat:'PRODUCT'},
+        {video:'assets/g-care1.mp4',cat:'CARE'},
+        {video:'assets/g-skin.mp4',cat:'SKIN'},
+        {video:'assets/g-contour.mp4',cat:'CONTOUR'},
+        {video:'assets/g-premium.mp4',cat:'PREMIUM'},
+        {video:'assets/g-care2.mp4',cat:'CARE'},
+        {video:'assets/g-detail.mp4',cat:'DETAIL'},
+        {video:'assets/g-space.mp4',cat:'SPACE'},
+      ],
+      reviews:[
+        {video:'assets/review1.mp4',cat:'REVIEW',meta:'MOVIE',body:'실제 방문 고객의 후기 영상입니다.'},
+        {video:'assets/review2.mp4',cat:'REVIEW',meta:'MOVIE',body:'실제 방문 고객의 후기 영상입니다.'},
+        {video:'assets/review3.mp4',cat:'REVIEW',meta:'MOVIE',body:'실제 방문 고객의 후기 영상입니다.'},
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
